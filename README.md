@@ -11,17 +11,18 @@ execução.
 O interpretador segue uma sintaxe simples.\
 Cada comando individual é **separado por ponto e vírgula (`;`)**.
 
-Um comando é composto por: - **Comando principal** --- o nome do comando
-a ser executado; - **Argumentos opcionais** --- iniciados por `/` e
-finalizados por `$`.
+Um comando é composto por: 
+
+- **Comando principal**: o nome do comando a ser executado; 
+- **Argumentos**: iniciados por `/`.
 
 O comando principal e seus argumentos são **encerrados com `$`**, e o
 comando completo termina com `;`.
 
 **Exemplos:**
 
-    comando-a$;
-    print$/hello world!$;
+    comando-exemplo$;
+    print$ /hello world!$ ;
 
 ------------------------------------------------------------------------
 
