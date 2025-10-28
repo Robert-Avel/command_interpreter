@@ -44,9 +44,10 @@ commandCreate(command_key, function, args_name_n_types)
   `function`                   `Callable`              Função que será executada ao
                                                        chamar o comando.
 
-  `args_name_n_types`          `dict[str, ArgsType]`   Dicionário com os nomes e
+   `args_name_n_types`          `dict[str, ArgsType]`   Dicionário com os nomes e
                                                        tipos dos argumentos
                                                        esperados.
+                                                       
   ---------------------------------------------------------------------------------
 
 > **Nota:** O número de argumentos registrados em `commandCreate()` deve
@@ -69,6 +70,7 @@ Eles são definidos na classe `ArgsType`:
 
   `ENUM`                  Argumento numérico restrito a um conjunto de
                           valores predefinidos.
+                          
   -----------------------------------------------------------------------
 
 ------------------------------------------------------------------------
@@ -134,6 +136,7 @@ O interpretador vem com dois comandos internos:
 
   `test$;`                              Executa um teste básico para verificar se o interpretador
                                         está funcionando corretamente.
+                                        
   --------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
