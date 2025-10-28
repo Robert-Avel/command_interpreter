@@ -100,16 +100,16 @@ execução:
 
   Status                        Significado
   ----------------------------- ------------------------------------------
-  `SUCEFULL`                    Execução concluída com sucesso.
-  `FAILURE`                     Falha genérica.
-  `ARGUMENTS_MISSING_OR_LEFT`   Quantidade incorreta de argumentos.
-  `ARGUMENTS_TYPE_ERROR`        Tipo de argumento inválido.
-  `END_FLAG_MISSING`            Delimitador de fim (`$`) ausente.
-  `COMMAND_NOT_FOUND`           Comando inexistente.
-  `MAIN_COMMAND_EXPECTED`       Faltando comando principal.
-  `SEMICOLON_MISSING`           Comando não termina com ponto e vírgula.
+  `SUCEFULL`                    Execução concluída com sucesso.\
+  `FAILURE`                     Falha genérica.\
+  `ARGUMENTS_MISSING_OR_LEFT`   Quantidade incorreta de argumentos.\
+  `ARGUMENTS_TYPE_ERROR`        Tipo de argumento inválido.\
+  `END_FLAG_MISSING`            Delimitador de fim (`$`) ausente.\
+  `COMMAND_NOT_FOUND`           Comando inexistente.\
+  `MAIN_COMMAND_EXPECTED`       Faltando comando principal.\
+  `SEMICOLON_MISSING`           Comando não termina com ponto e vírgula.\
 
-------------------------------------------------------------------------
+  ------------------------------------------------------------------------
 
 ## 💬 Retorno de Função
 
