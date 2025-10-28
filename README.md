@@ -134,6 +134,6 @@ def soma(a: int, b: int):
 main = Interpreter()
 main.commandCreate("soma", soma, {"a": ArgsType.INTEGER, "b": ArgsType.INTEGER})
 
-print(main.execCommand("soma/a$10/b$5;"))
+print(main.execCommand("soma$ /10$ /5$ ;"))
 print(main.last_command_return)  # -> "15"
 ```
