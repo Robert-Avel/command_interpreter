@@ -12,7 +12,8 @@ O interpretador segue uma sintaxe simples.\
 Cada comando individual é **separado por ponto e vírgula (`;`)**.
 
 Um comando é composto por: - **Comando principal** --- o nome do comando
-a ser executado; - **Argumentos** --- iniciados por `/`.
+a ser executado; - **Argumentos opcionais** --- iniciados por `/` e
+finalizados por `$`.
 
 O comando principal e seus argumentos são **encerrados com `$`**, e o
 comando completo termina com `;`.
@@ -20,7 +21,7 @@ comando completo termina com `;`.
 **Exemplos:**
 
     comando-a$;
-    print$ /hello world!$ ;
+    print$/hello world!$;
 
 ------------------------------------------------------------------------
 
@@ -30,25 +31,17 @@ Para adicionar novos comandos personalizados ao interpretador, utilize o
 método:
 
 ``` python
-commandCreate(command_key, function, args_name_n_types)
+commandCreate(command_key: str, function: Callable, args_name_n_types: dict[str, ArgsType])
 ```
 
 ### Parâmetros
 
-  ---------------------------------------------------------------------------------
-  Parâmetro                    Tipo                    Descrição
-  ---------------------------- ----------------------- ----------------------------
-  `command_key`                `str`                   Palavra-chave que identifica
-                                                       o comando no interpretador.
+  `command_key:` Palavra-chave que identifica o comando no interpretador.
 
-  `function`                   `Callable`              Função que será executada ao
-                                                       chamar o comando.
+  `function`: Função que será executada ao chamar o comando.
 
-   `args_name_n_types`          `dict[str, ArgsType]`   Dicionário com os nomes e
-                                                       tipos dos argumentos
-                                                       esperados.
-                                                       
-  ---------------------------------------------------------------------------------
+  `args_name_n_types`: Dicionário com os nomes e tipos dos argumentos esperados.
+
 
 > **Nota:** O número de argumentos registrados em `commandCreate()` deve
 > corresponder exatamente ao número de parâmetros da função associada.
@@ -61,17 +54,11 @@ Os tipos de argumentos determinam como o interpretador deve tratar cada
 parâmetro.\
 Eles são definidos na classe `ArgsType`:
 
-  -----------------------------------------------------------------------
-  Tipo                    Descrição
-  ----------------------- -----------------------------------------------
-  `INTEGER`               Argumento numérico (int).
+  `ArgsType.INTEGER`: Argumento numérico (int).
 
-  `TEXT`                  Argumento textual (str).
+  `ArgsType.TEXT`: Argumento textual (str).
 
-  `ENUM`                  Argumento numérico restrito a um conjunto de
-                          valores predefinidos.
-                          
-  -----------------------------------------------------------------------
+  `ArgsType.ENUM`: Argumento numérico restrito a um conjunto de valores predefinidos.
 
 ------------------------------------------------------------------------
 
@@ -85,9 +72,6 @@ execCommand(input: str) -> Status
 
 ### Parâmetros
 
-  ------------------------------------------------------------------------
-  Parâmetro                    Tipo           Descrição
-  ---------------------------- -------------- ----------------------------
   `input`                      `str`          Linha de comando(s) a ser
                                               interpretada e executada.
 
@@ -98,8 +82,7 @@ execCommand(input: str) -> Status
 Retorna um valor da enumeração `Status`, indicando o resultado da
 execução:
 
-  Status                        Significado
-  ----------------------------- ------------------------------------------
+
   `SUCEFULL`                    Execução concluída com sucesso.\
   `FAILURE`                     Falha genérica.\
   `ARGUMENTS_MISSING_OR_LEFT`   Quantidade incorreta de argumentos.\
@@ -107,9 +90,9 @@ execução:
   `END_FLAG_MISSING`            Delimitador de fim (`$`) ausente.\
   `COMMAND_NOT_FOUND`           Comando inexistente.\
   `MAIN_COMMAND_EXPECTED`       Faltando comando principal.\
-  `SEMICOLON_MISSING`           Comando não termina com ponto e vírgula.\
+  `SEMICOLON_MISSING`           Comando não termina com ponto e vírgula.
 
-  ------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## 💬 Retorno de Função
 
@@ -128,18 +111,16 @@ Interpreter.last_command_return
 
 O interpretador vem com dois comandos internos:
 
-  --------------------------------------------------------------------------------------------------
-  Comando                               Função
-  ------------------------------------- ------------------------------------------------------------
+
   `help$;`                              Imprime a lista de comandos disponíveis, no
-                                        formato:`<br>`{=html}`command_key <arg_type: arg_name>...`
+                                        formato:`command_key <arg_type: arg_name>...`
 
   `test$;`                              Executa um teste básico para verificar se o interpretador
                                         está funcionando corretamente.
                                         
   --------------------------------------------------------------------------------------------------
 
-------------------------------------------------------------------------
+
 
 ## 💡 Exemplo de Uso
 
@@ -152,6 +133,6 @@ def soma(a: int, b: int):
 main = Interpreter()
 main.commandCreate("soma", soma, {"a": ArgsType.INTEGER, "b": ArgsType.INTEGER})
 
-print(main.execCommand("soma$ /10$ /5$ ;"))
+print(main.execCommand("soma/a$10/b$5;"))
 print(main.last_command_return)  # -> "15"
 ```
